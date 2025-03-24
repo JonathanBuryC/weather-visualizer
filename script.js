@@ -41,6 +41,7 @@ function fetchWeatherData(latitude, longitude) {
         .then(data => {
             displayWeatherData(data);
             displayForecast(data);
+            applyWeatherEffect(data.current_weather.weathercode);
         })
         .catch(error => console.error('Erreur lors de la récupération des données météorologiques :', error));
 }
@@ -105,6 +106,19 @@ function getWeatherIcon(weatherCode) {
     };
 
     return iconMap[weatherCode] || 'https://www.weatherbit.io/static/img/icons/c01d.png';  // Icône par défaut
+}
+
+function applyWeatherEffect(weatherCode) {
+    const container = document.querySelector('.container');
+    container.classList.remove('weather-sunny', 'weather-rainy', 'weather-foggy');
+
+    if (weatherCode === 0 || weatherCode === 1) {
+        container.classList.add('weather-sunny');
+    } else if (weatherCode === 2) {
+        container.classList.add('weather-rainy');
+    } else if (weatherCode === 3) {
+        container.classList.add('weather-foggy');
+    }
 }
 
 function updateMap(latitude, longitude) {

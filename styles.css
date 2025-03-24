@@ -144,3 +144,52 @@ main {
     width: 50px;
     height: 50px;
 }
+
+/* Effects for weather conditions */
+.weather-sunny {
+    background: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
+}
+
+.weather-rainy {
+    background: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+    position: relative;
+}
+
+.weather-rainy::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/123941/rain-layer.png') repeat;
+    animation: rain 0.5s linear infinite;
+    opacity: 0.5;
+}
+
+@keyframes rain {
+    0% { background-position: 0 -100%; }
+    100% { background-position: 0 100%; }
+}
+
+.weather-foggy {
+    background: linear-gradient(to top, #d3cce3 0%, #e9e4f0 100%);
+    position: relative;
+}
+
+.weather-foggy::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/123941/fog-layer.png') repeat;
+    animation: fog 5s linear infinite;
+    opacity: 0.5;
+}
+
+@keyframes fog {
+    0% { background-position: 0 0; }
+    100% { background-position: 100% 0; }
+}
