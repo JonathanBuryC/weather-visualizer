@@ -139,7 +139,7 @@ function updateMap(latitude, longitude) {
             .openPopup();
     }
 
-    // Resize the map to fit the container
+    // Resize the map to fit the container z
     setTimeout(() => {
         map.invalidateSize();
     }, 100);
