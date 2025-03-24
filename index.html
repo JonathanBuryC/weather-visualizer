@@ -1,31 +1,33 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tableau de bord météo</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Weather Visualizer</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 </head>
 <body>
+    <div class="video-background">
+        <video autoplay muted loop>
+            <source src="videos/default.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
     <div class="container">
         <header>
-            <h1>Tableau de bord météo</h1>
             <div class="search-bar">
-                <input type="text" id="cityInput" placeholder="Entrez le nom de la ville">
+                <input type="text" id="cityInput" placeholder="Enter city name">
                 <button id="searchButton">Rechercher</button>
             </div>
         </header>
         <main>
-            <section id="weatherData" class="weather-section"></section>
-            <section id="forecast" class="forecast-grid"></section>
-            <section id="map" class="map-section"></section>
+            <section class="weather-section">
+                <div id="weatherData"></div>
+            </section>
+            <section class="forecast-grid" id="forecast"></section>
+            <section class="map-section" id="map"></section>
         </main>
     </div>
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

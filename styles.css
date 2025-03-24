@@ -1,6 +1,5 @@
 body {
     font-family: 'Roboto', sans-serif;
-    background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
     margin: 0;
     padding: 0;
     display: flex;
@@ -8,12 +7,13 @@ body {
     align-items: flex-start;
     height: 100vh;
     overflow: auto;
+    position: relative;
 }
 
 .container {
     width: 100%;
     max-width: 1200px;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.8);
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -23,6 +23,8 @@ body {
     transform: perspective(1000px);
     transform-style: preserve-3d;
     transition: transform 0.3s ease, background 0.3s ease;
+    position: relative;
+    z-index: 2;
 }
 
 .container:hover {
@@ -150,51 +152,36 @@ main {
     height: 50px;
 }
 
-/* Effects for weather conditions */
-.weather-sunny {
-    background: linear-gradient(to top, #ff7e5f 0%, #feb47b 100%);
-}
-
-.weather-rainy {
-    background: linear-gradient(to top, #4b79a1 0%, #283e51 100%);
-    position: relative;
-}
-
-.weather-rainy::before {
-    content: "";
+/* Video background styles */
+.video-background {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/123941/rain-layer.png') repeat;
-    animation: rain 0.5s linear infinite;
-    opacity: 0.7;
+    z-index: 1;
+    overflow: hidden;
 }
 
-@keyframes rain {
-    0% { background-position: 0 -100%; }
-    100% { background-position: 0 100%; }
-}
-
-.weather-foggy {
-    background: linear-gradient(to top, #d3cce3 0%, #e9e4f0 100%);
-    position: relative;
-}
-
-.weather-foggy::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
+.video-background video {
     width: 100%;
     height: 100%;
-    background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/123941/fog-layer.png') repeat;
-    animation: fog 5s linear infinite;
-    opacity: 0.7;
+    object-fit: cover;
+    z-index: 1;
 }
 
-@keyframes fog {
-    0% { background-position: 0 0; }
-    100% { background-position: 100% 0; }
+.weather-sunny .video-background video {
+    content: url('videos/sunny.mp4');
+}
+
+.weather-rainy .video-background video {
+    content: url('videos/rainy.mp4');
+}
+
+.weather-cloudy .video-background video {
+    content: url('videos/cloudy.mp4');
+}
+
+.weather-foggy .video-background video {
+    content: url('videos/foggy.mp4');
 }

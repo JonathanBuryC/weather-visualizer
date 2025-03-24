@@ -110,15 +110,24 @@ function getWeatherIcon(weatherCode) {
 
 function applyWeatherEffect(weatherCode) {
     const container = document.querySelector('.container');
-    container.classList.remove('weather-sunny', 'weather-rainy', 'weather-foggy');
+    const videoBackground = document.querySelector('.video-background video');
+    container.classList.remove('weather-sunny', 'weather-rainy', 'weather-cloudy', 'weather-foggy');
 
     if (weatherCode === 0 || weatherCode === 1) {
         container.classList.add('weather-sunny');
+        videoBackground.src = 'videos/sunny.mp4';
     } else if (weatherCode === 2) {
         container.classList.add('weather-rainy');
+        videoBackground.src = 'videos/rainy.mp4';
     } else if (weatherCode === 3) {
+        container.classList.add('weather-cloudy');
+        videoBackground.src = 'videos/cloudy.mp4';
+    } else if (weatherCode === 45 || weatherCode === 48) {
         container.classList.add('weather-foggy');
+        videoBackground.src = 'videos/foggy.mp4';
     }
+
+    videoBackground.play();
 }
 
 function updateMap(latitude, longitude) {
@@ -139,7 +148,7 @@ function updateMap(latitude, longitude) {
             .openPopup();
     }
 
-    // Resize the map to fit the container z
+    // Resize the map to fit the container
     setTimeout(() => {
         map.invalidateSize();
     }, 100);
